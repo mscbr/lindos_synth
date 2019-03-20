@@ -9,6 +9,15 @@ class App extends Component {
         <div className="test-state-comp">
           <TestStateComp />
         </div> 
+        <div className="control">
+          <div className="seq">
+          SEQ
+          </div>
+          <div className="adsr">
+          ADSR
+          </div>
+
+        </div>
       </div>
     );
   }

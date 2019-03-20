@@ -1,12 +1,39 @@
 .test-state-comp {
     width: 85%;
-    min-height: 70%;
+    min-height: 25%;
     margin: 0 auto;
-    background: red;
-    border: solid 3px lime;
+    background: rgb(255,255,255);
+    border: solid 3px rgb(13, 94, 175);
+    color: rgb(13, 94, 175);
     border-radius: 5px;
 }
+.control {
+    
+    width: 85%;
+    min-height: 35%;
+    margin: 0 auto;
+    background: rgb(255,255,255);
+    border: solid 3px rgb(13, 94, 175);
+    color: rgb(13, 94, 175);
+    border-radius: 5px;
+    ;
+}
+.seq {
+    display: block;
+    float: left;
+    width: 75%;
+    height: 100%;
+    border-right: 1px solid gray;
+    padding: 10px;
+}
+.adsr {
+    display: block;
+    float: right;
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+}
 .App {
-    background: rgb(53, 5, 10);
+    
     height: 100vh;
 }
