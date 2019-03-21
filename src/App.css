@@ -1,4 +1,4 @@
-.test-state-comp {
+.oscillator {
     width: 85%;
     min-height: 25%;
     margin: 0 auto;
@@ -33,7 +33,7 @@
     height: 100%;
     padding: 10px;
 }
-.App {
+.synth {
     
     height: 100vh;
 }

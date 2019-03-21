@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Tone from 'tone'
+import Sequencer from '../synth/Sequencer'
 
 class TestStateComp extends Component {
     constructor(props) {
@@ -9,14 +10,14 @@ class TestStateComp extends Component {
         }
         this.state.synth.toMaster();
     }
-    handlePlay = () => {
+    triggerSynth = () => {
         this.state.synth.triggerAttackRelease('D3', '8n');
     }
     render() {
         return (
             <div>
                 <p>UNI</p>
-                <button onClick={this.handlePlay}>>>></button>
+                
             </div>
         );
     }
