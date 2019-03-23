@@ -6,11 +6,12 @@
     border: solid 3px rgb(13, 94, 175);
     color: rgb(13, 94, 175);
     border-radius: 5px;
+    
 }
 .control {
     
     width: 85%;
-    min-height: 35%;
+    min-height: 55%;
     margin: 0 auto;
     background: rgb(255,255,255);
     border: solid 3px rgb(13, 94, 175);
@@ -19,6 +20,7 @@
     ;
 }
 .seq {
+    margin-top: 20%;
     display: block;
     float: left;
     width: 75%;
