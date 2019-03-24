@@ -2,25 +2,25 @@
     width: 85%;
     min-height: 25%;
     margin: 0 auto;
-    background: rgb(255,255,255);
-    border: solid 3px rgb(13, 94, 175);
-    color: rgb(13, 94, 175);
+    background: rgba(255, 252, 246, 1);
+    border: solid 3px rgba(3, 68, 136, 1);
+    color: rgba(3, 68, 136, 1);
     border-radius: 5px;
     
 }
 .control {
     
     width: 85%;
-    min-height: 55%;
+    min-height: 35%;
     margin: 0 auto;
-    background: rgb(255,255,255);
+    background: rgba(255, 252, 246, 1);
     border: solid 3px rgb(13, 94, 175);
     color: rgb(13, 94, 175);
     border-radius: 5px;
     ;
 }
 .seq {
-    margin-top: 20%;
+    
     display: block;
     float: left;
     width: 75%;
@@ -36,6 +36,7 @@
     padding: 10px;
 }
 .synth {
-    
+    padding-top: 50px;
+    background: rgba(237, 236, 232, 1);
     height: 100vh;
 }
