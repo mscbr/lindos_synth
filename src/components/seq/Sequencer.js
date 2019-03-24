@@ -9,14 +9,22 @@ const rowStyle = {
 const stepStyle = {
   width: '5%',
   height: '8vh',
-  border: '1px solid red',
+  border: '1px solid rgba(204, 221, 232, 1)',
   margin: 2,
   borderRadius: 3
 }
 const progressStyle = {
-  width: '100%',
-  height: '15%',
-  border: '1px solid black'
+  width: 10,
+  height: 10,
+  border: '1px solid rgba(204, 221, 232, 0.7)',
+  borderRadius: '100%'
+}
+const lightOn = {
+  width: 10,
+  height: 10,
+  border: '1px solid rgba(204, 221, 232, 0.7)',
+  borderRadius: '100%',
+  background: 'rgba(23, 143, 214, 1)',
 }
 //CHANGE THIS TO FUNCTIONAL COMPONENT
 export default class Sequencer extends Component {
@@ -32,11 +40,18 @@ export default class Sequencer extends Component {
       
       for(let i = 0; i < 32; i++) {
         steps.push(
-          
+          i === this.props.seqPosition ? (
           <div style={stepStyle} key={`step${i}`}>
-          <div style={progressStyle} index={`styleIndex${i}`}></div>
-          {i}
+            <div style={lightOn} index={`styleIndex${i}`}></div>
+            {i}
           </div>
+          ) : (
+          <div style={stepStyle} key={`step${i}`}>
+            <div style={progressStyle} index={`styleIndex${i}`}></div>
+            {i}
+          </div>
+          )
+          
         );
       }
       
@@ -44,9 +59,8 @@ export default class Sequencer extends Component {
     }
 
   render() {
-    console.log(this.props.seqPosition);
+    //console.log(this.props.seqPosition);
     const steps = this.makeRow();
-    //console.log(this.state.);
     return (
       <div className='s'>
         <button onClick={this.props.triggerSeq}>>>></button>

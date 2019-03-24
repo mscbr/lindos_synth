@@ -54,7 +54,7 @@ class Synth extends Component {
             21.5062896,
             0.0],
           sequenceValues: [440,445,220,220],
-          seqencePosition: 0
+          sequencePosition: 0
         }
 
         ///INITIAL SET-UP FOR SYNTH & SEQUENCER
@@ -85,7 +85,7 @@ class Synth extends Component {
     }
     positionSet = () => {let seqPosVal = (parseInt(Tone.Transport.position.slice(0,1))%2)*16 + parseInt(Tone.Transport.position.slice(2,3))*4 + parseInt(Tone.Transport.position.slice(4,5));
       this.setState({
-        seqencePosition: seqPosVal
+        sequencePosition: seqPosVal
       })
     }
     randomizeSequence = () => {
@@ -110,6 +110,9 @@ class Synth extends Component {
     stopSeq = () => {
       Tone.Transport.stop();
       this.seq.stop();
+      this.setState({
+        sequencePosition: 0
+      })
     }
   render() {
     
@@ -121,7 +124,7 @@ class Synth extends Component {
         <div className="control">
           <div className="seq">
           SEQ  {Tone.Transport.bpm.value}
-          <Sequencer triggerSeq={this.triggerSeq} stopSeq={this.stopSeq} seqPosition={this.state.seqencePosition} />
+          <Sequencer triggerSeq={this.triggerSeq} stopSeq={this.stopSeq} seqPosition={this.state.sequencePosition} />
           </div>
           <div className="adsr">
           ADSR
