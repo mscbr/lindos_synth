@@ -9,50 +9,6 @@ class Synth extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          partch: [1200.0,
-            1178.49371,
-            1146.727057,
-            1115.532807,
-            1088.268715,
-            1049.362941,
-            1034.995772,
-            1017.596288,
-            996.0899983,
-            968.8259065,
-            933.1290944,
-            905.8650026,
-            884.358713,
-            852.5920594,
-            813.6862861,
-            782.4920359,
-            764.9159047,
-            729.2190927,
-            701.9550009,
-            680.4487113,
-            648.6820576,
-            617.4878074,
-            582.5121926,
-            551.3179424,
-            519.5512887,
-            498.0449991,
-            470.7809073,
-            435.0840953,
-            417.5079641,
-            386.3137139,
-            347.4079406,
-            315.641287,
-            294.1349974,
-            266.8709056,
-            231.1740935,
-            203.9100017,
-            182.4037121,
-            165.0042285,
-            150.6370585,
-            111.7312853,
-            84.46719347,
-            53.27294323,
-            21.5062896,
-            0.0],
           sequenceValues: [440,445,220,220],
           sequencePosition: 0
         }
@@ -60,19 +16,16 @@ class Synth extends Component {
         ///INITIAL SET-UP FOR SYNTH & SEQUENCER
         this.synth = new Tone.Synth().toMaster();
         this.seq = new Tone.Sequence((time, value) => {
-          console.log(Tone.Transport.position.slice(2,5));
           this.positionSet();
-          
           this.synth.triggerAttackRelease(value, "16n", time);
         }, this.state.sequenceValues, "16n");
-       
-        
     }
+
     componentDidMount() {
       //INITIALLY SETTING UP RANDOMIZED SEQ VALUES
-      this.setState({
-        sequenceValues: this.randomizeSequence()
-      });
+      // this.setState({
+      //   sequenceValues: this.randomizeSequence()
+      // });
     }
     componentDidUpdate(prevProps, prevState) {
       //updating sequence values
@@ -88,14 +41,21 @@ class Synth extends Component {
         sequencePosition: seqPosVal
       })
     }
-    randomizeSequence = () => {
-      let sequence = [];
-      const { partch } = this.state;
-      for (let i = 0; i < 32; i++) {
-        sequence.push(i%4 ? 110 : i === 0 ?  2400 : partch[Math.floor(Math.random() * i)]);
-      }
-      return sequence;
+    setSequenceVal = (seqenceValues) => {
+      this.setState({
+        sequenceValues: seqenceValues
+      });
     }
+
+    // randomizeSequence = () => {
+    //   let sequence = [];
+    //   const { partch } = this.state;
+    //   for (let i = 0; i < 32; i++) {
+    //     sequence.push(i%4 ? 110 : i === 0 ?  2400 : partch[Math.floor(Math.random() * i)]);
+    //   }
+    //   return sequence;
+    // }
+
     triggerSeq = () => {
       //###########################################################################
       //###with code below you can create (w/ chrome) chip-sound effect on synth###
@@ -115,7 +75,7 @@ class Synth extends Component {
       })
     }
   render() {
-    
+     //console.log(this.state)
     return (
       <div className="synth">
         <div className="oscillator">
@@ -124,7 +84,12 @@ class Synth extends Component {
         <div className="control">
           <div className="seq">
           SEQ  {Tone.Transport.bpm.value}
-          <Sequencer triggerSeq={this.triggerSeq} stopSeq={this.stopSeq} seqPosition={this.state.sequencePosition} />
+          <Sequencer 
+            triggerSeq={this.triggerSeq} 
+            stopSeq={this.stopSeq} 
+            seqPosition={this.state.sequencePosition}
+            setSequenceVal={this.setSequenceVal} 
+          />
           </div>
           <div className="adsr">
           ADSR
