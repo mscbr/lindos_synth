@@ -29,14 +29,20 @@ class Synth extends Component {
     componentDidUpdate(prevProps, prevState) {
 
       if (prevState.sequenceValues !== this.state.sequenceValues) {
-        this.stopSeq();
+        //assigning sequence with updated values to this.seq
         this.seq = new Tone.Sequence((time, value) => {
           this.positionSet();
           if(value !== "") {
             this.synth.triggerAttackRelease(value, "16n", time);
           }
         }, this.state.sequenceValues, "16n").start();
-        this.triggerSeq();
+
+        //sequence will only start if it was already playing
+        if(Tone.Transport.state !== 'stopped') {
+          console.log(Tone.Transport.state);
+          this.stopSeq();
+          this.triggerSeq();
+        }
        
       }
       
