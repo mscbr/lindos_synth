@@ -19,12 +19,10 @@ const progressStyle = {
   height: 10,
   margin: '2px auto',
   border: '1px solid rgba(255, 252, 246, 1)',
-  borderRadius: '100%'
+  borderRadius: '100%',
+  background: 'transparent'
 }
-const lightOn = {
-  ...progressStyle,
-  background: 'rgba(255, 252, 246, 0.7)',
-}
+
 const noteSelectStyle = {
   maxWidth: '99%',
   background: 'rgba(204, 221, 232, 1)',
@@ -67,25 +65,29 @@ class Sequencer extends Component {
       );
     })
     for(let i = 0; i < 32; i++) {
+      
       steps.push(
         //ternary operation for marking a progress in step sequence
         i === this.props.seqPosition ? (
-        <div style={stepStyle} key={`step${i}`}>
-          <div style={lightOn}></div>
+        <div style={{...stepStyle, ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'})}} key={`step${i}`} >
+          <div style={{...progressStyle, background: 'rgba(255, 252, 246, 0.7)'}}></div>
           <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
             <option value={null} defaultValue>--</option>
             {select}
           </select>
+          <div className="value-display" style={valueDisplayStyle}>
+           {this.state.sequenceValues[i] && this.state.sequenceValues[i].slice(0,4)}
+          </div>
         </div>
         ) : (
-        <div style={stepStyle} key={`step${i}`}>
+        <div style={{...stepStyle, ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'})}} key={`step${i}`}>
           <div style={progressStyle}></div>
           <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
             <option value="" defaultValue>--</option>
             {select}
           </select>
           <div className="value-display" style={valueDisplayStyle}>
-          {this.state.sequenceValues[i] && this.state.sequenceValues[i].slice(0,4)}
+           {this.state.sequenceValues[i] && this.state.sequenceValues[i].slice(0,4)}
           </div>
         </div>
         )
@@ -105,7 +107,7 @@ class Sequencer extends Component {
 
 
   render() {
-    console.log(this.props.seqPosition);
+    //console.log(this.props.seqPosition);
     const steps = this.makeRow();
     return (
       <div className='s'>

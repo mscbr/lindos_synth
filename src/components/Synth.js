@@ -26,40 +26,27 @@ class Synth extends Component {
         Tone.Transport.loop = true;
     }
 
-    componentDidMount() {
-      //INITIALLY SETTING UP RANDOMIZED SEQ VALUES
-      // this.setState({
-      //   sequenceValues: this.randomizeSequence()
-      // });
-    }
     componentDidUpdate(prevProps, prevState) {
-      //updating sequence values
-      //this.seq.stop();
 
       if (prevState.sequenceValues !== this.state.sequenceValues) {
-        //this.setSequenceVal();
-
+        this.stopSeq();
         this.seq = new Tone.Sequence((time, value) => {
           this.positionSet();
           if(value !== "") {
             this.synth.triggerAttackRelease(value, "16n", time);
           }
         }, this.state.sequenceValues, "16n").start();
-        
-        //doesnt work well
-        Tone.Transport.position = "0:0:0";
-
+        this.triggerSeq();
        
       }
       
     }
     positionSet = () => {
       let position = Tone.Transport.position.slice();
-      console.log('pos var: ', position);
+      //console.log('pos var: ', position);
       
-      //++ set Tone.Transoprt.position itself!!
       let seqPosVal = (parseInt(position.slice(0, 1)%2))*16 + parseInt(position.slice(2,3))*4 + parseInt(position.slice(4,5));
-      console.log('positionSeta: ', seqPosVal);
+      //console.log('positionSeta: ', seqPosVal);
       this.setState({
         sequencePosition: seqPosVal
       })
@@ -69,15 +56,6 @@ class Synth extends Component {
         sequenceValues: seqenceValues
       });
     }
-
-    // randomizeSequence = () => {
-    //   let sequence = [];
-    //   const { partch } = this.state;
-    //   for (let i = 0; i < 32; i++) {
-    //     sequence.push(i%4 ? 110 : i === 0 ?  2400 : partch[Math.floor(Math.random() * i)]);
-    //   }
-    //   return sequence;
-    // }
 
     triggerSeq = () => {
       //###########################################################################
@@ -93,12 +71,13 @@ class Synth extends Component {
     stopSeq = () => {
       Tone.Transport.stop(0);
       this.seq.stop(0);
+      Tone.Transport.position = "0:0:0";
       this.setState({
         sequencePosition: 0
       })
     }
   render() {
-     console.log('SYNTH: ', this.state.sequencePosition);
+    //console.log('SYNTH: ', this.state.sequencePosition);
     return (
       <div className="synth">
         <div className="oscillator">
