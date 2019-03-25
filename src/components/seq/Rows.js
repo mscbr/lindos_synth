@@ -36,7 +36,10 @@ const valueDisplayStyle = {
   textAlign: 'center'
 }
 
-class Sequencer extends Component {
+class Rows extends Component {
+  //put all state into ValuePicker, and transform to functional comp
+  //++update propTypes
+  //RENAME
   constructor(props) {
     super(props);
     this.state = {
@@ -73,10 +76,10 @@ class Sequencer extends Component {
         i === this.props.seqPosition ? (
         <div style={{...stepStyle, ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'})}} key={`step${i}`} >
           <div style={{...progressStyle, background: 'rgba(255, 252, 246, 0.7)'}}></div>
-          <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
+          {/* <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
             <option value={null} defaultValue>--</option>
             {select}
-          </select>
+          </select> */}
           <div className="value-display" style={valueDisplayStyle}>
            {this.state.sequenceValues[i] && this.state.sequenceValues[i].slice(0,4)}
           </div>
@@ -84,10 +87,10 @@ class Sequencer extends Component {
         ) : (
         <div style={{...stepStyle, ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'})}} key={`step${i}`}>
           <div style={progressStyle}></div>
-          <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
+          {/* <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
             <option value="" defaultValue>--</option>
             {select}
-          </select>
+          </select> */}
           <div className="value-display" style={valueDisplayStyle}>
            {this.state.sequenceValues[i] && this.state.sequenceValues[i].slice(0,4)}
           </div>
@@ -128,8 +131,8 @@ class Sequencer extends Component {
   }
 }
 
-Sequencer.propTypes = {
+Rows.propTypes = {
   seqPosition: PropTypes.number
 }
 
-export default Sequencer;
+export default Rows;

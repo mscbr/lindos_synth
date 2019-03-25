@@ -3,7 +3,7 @@ import Tone from 'tone'
 
 //import '../App.css'
 
-import Sequencer from './seq/Sequencer';
+import Rows from './seq/Rows';
 
 class Synth extends Component {
   constructor(props) {
@@ -93,6 +93,7 @@ class Synth extends Component {
     })
   }
   //build a conditional render only for step sequencer
+  //IF ONLY POS CHANGED ONLY RENDER ~~
   render() {
     
     return (
@@ -110,7 +111,7 @@ class Synth extends Component {
               /> 
             <button onClick={this.triggerSeq}>>>></button>
             <button onClick={this.stopSeq}>|||</button>
-            <Sequencer 
+            <Rows 
               seqPosition={this.state.sequencePosition}
               setSequenceVal={this.setSequenceVal} 
             />
