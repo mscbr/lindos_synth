@@ -9,7 +9,7 @@ class Synth extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          sequenceValues: [440,445,220,220],
+          sequenceValues: [''],
           sequencePosition: 0
         }
 
@@ -17,8 +17,13 @@ class Synth extends Component {
         this.synth = new Tone.Synth().toMaster();
         this.seq = new Tone.Sequence((time, value) => {
           this.positionSet();
-          this.synth.triggerAttackRelease(value, "16n", time);
+          if(value !== "") {
+            this.synth.triggerAttackRelease(value, "16n", time);
+          }
+          
         }, this.state.sequenceValues, "16n");
+        Tone.Transport.setLoopPoints(0, '2m');
+        Tone.Transport.loop = true;
     }
 
     componentDidMount() {
@@ -29,14 +34,32 @@ class Synth extends Component {
     }
     componentDidUpdate(prevProps, prevState) {
       //updating sequence values
+      //this.seq.stop();
+
       if (prevState.sequenceValues !== this.state.sequenceValues) {
+        //this.setSequenceVal();
+
         this.seq = new Tone.Sequence((time, value) => {
           this.positionSet();
-          this.synth.triggerAttackRelease(value, "16n", time);
-        }, this.state.sequenceValues, "16n");
+          if(value !== "") {
+            this.synth.triggerAttackRelease(value, "16n", time);
+          }
+        }, this.state.sequenceValues, "16n").start();
+        
+        //doesnt work well
+        Tone.Transport.position = "0:0:0";
+
+       
       }
+      
     }
-    positionSet = () => {let seqPosVal = (parseInt(Tone.Transport.position.slice(0,1))%2)*16 + parseInt(Tone.Transport.position.slice(2,3))*4 + parseInt(Tone.Transport.position.slice(4,5));
+    positionSet = () => {
+      let position = Tone.Transport.position.slice();
+      console.log('pos var: ', position);
+      
+      //++ set Tone.Transoprt.position itself!!
+      let seqPosVal = (parseInt(position.slice(0, 1)%2))*16 + parseInt(position.slice(2,3))*4 + parseInt(position.slice(4,5));
+      console.log('positionSeta: ', seqPosVal);
       this.setState({
         sequencePosition: seqPosVal
       })
@@ -68,14 +91,14 @@ class Synth extends Component {
       Tone.Transport.start();
     }
     stopSeq = () => {
-      Tone.Transport.stop();
-      this.seq.stop();
+      Tone.Transport.stop(0);
+      this.seq.stop(0);
       this.setState({
         sequencePosition: 0
       })
     }
   render() {
-     //console.log(this.state)
+     console.log('SYNTH: ', this.state.sequencePosition);
     return (
       <div className="synth">
         <div className="oscillator">

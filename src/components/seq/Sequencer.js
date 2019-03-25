@@ -34,67 +34,27 @@ const noteSelectStyle = {
 }
 const valueDisplayStyle = {
   maxWidth: '100%',
-  fontSize: 9
+  fontSize: '0.8rem',
+  textAlign: 'center'
 }
 
 class Sequencer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      partch: [1200.0,
-        1178.49371,
-        1146.727057,
-        1115.532807,
-        1088.268715,
-        1049.362941,
-        1034.995772,
-        1017.596288,
-        996.0899983,
-        968.8259065,
-        933.1290944,
-        905.8650026,
-        884.358713,
-        852.5920594,
-        813.6862861,
-        782.4920359,
-        764.9159047,
-        729.2190927,
-        701.9550009,
-        680.4487113,
-        648.6820576,
-        617.4878074,
-        582.5121926,
-        551.3179424,
-        519.5512887,
-        498.0449991,
-        470.7809073,
-        435.0840953,
-        417.5079641,
-        386.3137139,
-        347.4079406,
-        315.641287,
-        294.1349974,
-        266.8709056,
-        231.1740935,
-        203.9100017,
-        182.4037121,
-        165.0042285,
-        150.6370585,
-        111.7312853,
-        84.46719347,
-        53.27294323,
-        21.5062896,
-        0.0
+      partch: [0.000,  30.772,  60.625,  89.612,  117.783,  145.182,  171.850,  197.826,  223.144,  247.836,  271.934,  295.464,  318.454,  
+        340.927,  362.905,  384.412,  405.465,  426.084,  446.287,  466.090,  
+        485.508,  504.556,  523.248,  541.597,  559.616,  577.315,  594.707,  611.802,  628.609,  645.138,  661.398,  677.399,  693.147
       ],
       sequenceValues: [
-        "", "", "", "",
-        "", "", "", "", 
-        "", "", "", "", 
-        "", "", "", "", 
-        "", "", "", "", 
-        "", "", "", "", 
-        "", "", "", "", 
-        "", "", "", "", 
+        '', '', '', '',
+        '', '', '', '', 
+        '', '', '', '', 
+        '', '', '', '', 
+        '', '', '', '', 
+        '', '', '', '', 
+        '', '', '', '', 
+        '', '', '', '', 
       ]
     }
   }
@@ -113,7 +73,7 @@ class Sequencer extends Component {
         <div style={stepStyle} key={`step${i}`}>
           <div style={lightOn}></div>
           <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
-            <option value="" defaultValue>--</option>
+            <option value={null} defaultValue>--</option>
             {select}
           </select>
         </div>
@@ -125,7 +85,7 @@ class Sequencer extends Component {
             {select}
           </select>
           <div className="value-display" style={valueDisplayStyle}>
-          {this.state.sequenceValues[i].slice(0,4)}
+          {this.state.sequenceValues[i] && this.state.sequenceValues[i].slice(0,4)}
           </div>
         </div>
         )
@@ -145,7 +105,7 @@ class Sequencer extends Component {
 
 
   render() {
-    //console.log(this.state);
+    console.log(this.props.seqPosition);
     const steps = this.makeRow();
     return (
       <div className='s'>
