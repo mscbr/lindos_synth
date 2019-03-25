@@ -40,10 +40,7 @@ class Sequencer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      partch: [0.000,  30.772,  60.625,  89.612,  117.783,  145.182,  171.850,  197.826,  223.144,  247.836,  271.934,  295.464,  318.454,  
-        340.927,  362.905,  384.412,  405.465,  426.084,  446.287,  466.090,  
-        485.508,  504.556,  523.248,  541.597,  559.616,  577.315,  594.707,  611.802,  628.609,  645.138,  661.398,  677.399,  693.147
-      ],
+      partch: [0, 62.96, 203.91, 111.73, 498, 315.64, 701.95, 764.91, 813.68, 1200],
       sequenceValues: [
         '', '', '', '',
         '', '', '', '', 
@@ -55,13 +52,18 @@ class Sequencer extends Component {
         '', '', '', '', 
       ]
     }
+    
+    this.partchGreekCut = [0, 62.96, 203.91, 111.73, 498, 315.64, 701.95, 764.91, 813.68, 1200];
+    this.partchFull = [21.5, 53.3, 84.5, 111.7, 150.6, 165, 182.4, 203.9, 231.2, 266.9, 294.1, 
+      315.6, 347.4, 386.3, 417.5, 435.1, 470.8, 498, 519.6, 551.3, 582.5, 617.5, 648.7, 680.4, 
+      702, 729.2, 764.9, 782.5, 813.7, 852.6, 884.4, 905.9, 933.1, 968.8, 996.1, 1017.6, 1035, 1049.4, 1088.3, 1115.5, 1146.7, 1178.5, 1200];
   }
 
   makeRow = () => {
     const steps = [];
-    const select = this.state.partch.map(value => {
+    const select = this.state.partch.map((value, i) => {
       return (
-        <option value={value} key={`select${value}`}>{value}</option>
+        <option value={value} key={`select${value}`}>{i}</option>
       );
     })
     for(let i = 0; i < 32; i++) {
@@ -110,9 +112,7 @@ class Sequencer extends Component {
     //console.log(this.props.seqPosition);
     const steps = this.makeRow();
     return (
-      <div className='s'>
-        <button onClick={this.props.triggerSeq}>>>></button>
-        <button onClick={this.props.stopSeq}>|||</button>
+      <div className='sequence-steps'>
         <div style={rowStyle}>
           {steps.map((step, index) => {
             return index<16 ? step : null;
@@ -129,8 +129,6 @@ class Sequencer extends Component {
 }
 
 Sequencer.propTypes = {
-  triggerSeq: PropTypes.func,
-  stopSeq: PropTypes.func,
   seqPosition: PropTypes.number
 }
 
