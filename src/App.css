@@ -40,3 +40,14 @@
     background: rgba(237, 236, 232, 1);
     height: 100vh;
 }
+#bpm {
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 0;
+    width: 3rem;
+    margin: 0 5px 0 5px;
+    color: rgba(237, 236, 232, 1);
+    background: rgba(3, 68, 136, 0.8);
+    border: none;
+    border-radius: 3px;
+}
