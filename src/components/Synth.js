@@ -69,9 +69,7 @@ class Synth extends Component {
     })
   }
 
-
   setSequenceVal = (seqenceValues) => {
-
     this.setState({
       sequenceValues: seqenceValues
     });
@@ -107,7 +105,6 @@ class Synth extends Component {
   //build a conditional render only for step sequencer
   //IF ONLY POS CHANGED ONLY RENDER ~~
   render() {
-    //console.log(this.state);
     return (
       <div className="synth">
         <div className="oscillator">
