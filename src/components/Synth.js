@@ -29,7 +29,11 @@ class Synth extends Component {
       Tone.Transport.setLoopPoints(0, '2m');
       Tone.Transport.loop = true;
   }
+
 /////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+
   componentDidUpdate(prevProps, prevState) {
 
     if (prevState.sequenceValues !== this.state.sequenceValues) {
@@ -37,13 +41,12 @@ class Synth extends Component {
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
         if(value !== "") {
-          this.synth.triggerAttackRelease(value, "16n", time);
+          this.synth.triggerAttackRelease(value, "8n", time);
         }
       }, this.state.sequenceValues, "16n").start();
 
       //sequence will only start if it was already playing
       if(Tone.Transport.state !== 'stopped') {
-        console.log(Tone.Transport.state);
         this.stopSeq();
         this.triggerSeq();
       }
@@ -104,7 +107,7 @@ class Synth extends Component {
   //build a conditional render only for step sequencer
   //IF ONLY POS CHANGED ONLY RENDER ~~
   render() {
-    console.log(this.state.stepFocus);
+    //console.log(this.state);
     return (
       <div className="synth">
         <div className="oscillator">
@@ -124,10 +127,12 @@ class Synth extends Component {
               seqPosition={this.state.sequencePosition}
               handleStepFocus={this.handleStepFocus}
               stepFocus={this.state.stepFocus}
+              sequenceValues={this.state.sequenceValues}
             />
             <ValuePicker 
               handleStepFocus={this.handleStepFocus} 
               stepFocus={this.state.stepFocus}
+              setSequenceVal={this.setSequenceVal}
               />
           </div>
 

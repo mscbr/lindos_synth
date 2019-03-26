@@ -11,7 +11,7 @@
 .control {
     
     width: 85%;
-    min-height: 64%;
+    min-height: 50%;
     margin: 0 auto;
     background: rgba(255, 252, 246, 1);
     border: solid 3px rgba(3, 68, 136, 1);
@@ -63,6 +63,7 @@
     color: rgba(237, 236, 232, 1);
     text-align: center;
     margin: 2px;
+    margin-top: -22px;
     font-size: 0.7rem;
 }
 .radio-checkmark {
@@ -73,6 +74,7 @@
     background-color: rgba(3, 68, 136, 1);
     border-radius: 20%;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
 }
 .radio-container:hover input ~ .radio-checkmark {
     background-color: rgba(204, 221, 232, 1);
@@ -105,5 +107,6 @@ background: transparent;
 .radio-label {
     position: absolute;
     margin: 28px 0 0 0;
+    cursor: pointer;
 }
 /* VALUE PICKER END */
