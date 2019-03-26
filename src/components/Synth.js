@@ -37,10 +37,11 @@ class Synth extends Component {
   componentDidUpdate(prevProps, prevState) {
 
     if (prevState.sequenceValues !== this.state.sequenceValues) {
+      this.seq.dispose();
       //assigning sequence with updated values to this.seq
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
-        if(value !== "") {
+        if(value !== "" && value !== '0') {
           this.synth.triggerAttackRelease(value, "8n", time);
         }
       }, this.state.sequenceValues, "16n").start();
@@ -102,6 +103,7 @@ class Synth extends Component {
       sequencePosition: 0
     })
   }
+  
   //build a conditional render only for step sequencer
   //IF ONLY POS CHANGED ONLY RENDER ~~
   render() {

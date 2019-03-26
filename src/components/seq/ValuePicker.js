@@ -12,7 +12,7 @@ class ValuePicker extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          scale: [21.5, 53.3, 84.5, 111.7, 150.6, 165, 182.4, 203.9, 231.2, 266.9, 294.1, 
+          scale: ['', 21.5, 53.3, 84.5, 111.7, 150.6, 165, 182.4, 203.9, 231.2, 266.9, 294.1, 
             315.6, 347.4, 386.3, 417.5, 435.1, 470.8, 498, 519.6, 551.3, 582.5, 617.5, 648.7, 680.4, 
             702, 729.2, 764.9, 782.5, 813.7, 852.6, 884.4, 905.9, 933.1, 968.8, 996.1, 1017.6, 1035, 1049.4, 1088.3, 1115.5, 1146.7, 1178.5, 1200],
           sequenceValues: [
@@ -28,7 +28,7 @@ class ValuePicker extends Component {
           stepFocus: props.stepFocus
         }
         
-        this.partchGreekCut = [0, 62.96, 203.91, 111.73, 498, 315.64, 701.95, 764.91, 813.68, 1200];
+        this.partchGreekCut = [62.96, 203.91, 111.73, 498, 315.64, 701.95, 764.91, 813.68, 1200];
         this.partchFull = [21.5, 53.3, 84.5, 111.7, 150.6, 165, 182.4, 203.9, 231.2, 266.9, 294.1, 
           315.6, 347.4, 386.3, 417.5, 435.1, 470.8, 498, 519.6, 551.3, 582.5, 617.5, 648.7, 680.4, 
           702, 729.2, 764.9, 782.5, 813.7, 852.6, 884.4, 905.9, 933.1, 968.8, 996.1, 1017.6, 1035, 1049.4, 1088.3, 1115.5, 1146.7, 1178.5, 1200];
@@ -42,11 +42,14 @@ class ValuePicker extends Component {
     }
 
     setVal = (e, i) => {
+        
         let sequenceValues = [...this.state.sequenceValues];
         sequenceValues[i] = e.target.value;
+        
         this.setState({
           sequenceValues: sequenceValues
         });
+        
         this.props.setSequenceVal(sequenceValues);
       }
     
@@ -75,6 +78,11 @@ class ValuePicker extends Component {
             <p>STEP: {this.props.stepFocus+1}</p>
         <div className='value-picker' style={valuePickerStyle}>
             {valueButtons}
+            <label className='radio-container'>
+                <span className='radio-label'>VOID</span>
+                <input type='radio' name='radio' value='' onChange={(e) => this.setVal(e, this.props.stepFocus)} />
+                <span className='radio-checkmark'></span>
+            </label>
         </div>
         </div>
         )
