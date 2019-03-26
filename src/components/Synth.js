@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Tone from 'tone'
 
 //import '../App.css'
 
-import Rows from './seq/Rows';
+import Rows from './seq/Rows'
+import ValuePicker from './seq/ValuePicker'
+
 
 class Synth extends Component {
   constructor(props) {
@@ -11,7 +13,8 @@ class Synth extends Component {
       this.state = {
         sequenceValues: [''],
         sequencePosition: 0,
-        bpm: 120
+        bpm: 120,
+        stepFocus: 0
       }
 
       ///INITIAL SET-UP FOR SYNTH & SEQUENCER
@@ -26,7 +29,7 @@ class Synth extends Component {
       Tone.Transport.setLoopPoints(0, '2m');
       Tone.Transport.loop = true;
   }
-
+/////////////////////////////////////////////////////
   componentDidUpdate(prevProps, prevState) {
 
     if (prevState.sequenceValues !== this.state.sequenceValues) {
@@ -46,6 +49,8 @@ class Synth extends Component {
       }
     }
   }
+
+  //CURRENT SEQUENCE PROGRESS POSITION
   positionSet = () => {
     let position = Tone.Transport.position.slice();
     
@@ -54,11 +59,22 @@ class Synth extends Component {
       sequencePosition: seqPosVal
     })
   }
+
+  handleStepFocus = (step) => {
+    this.setState({
+      stepFocus: step
+    })
+  }
+
+
   setSequenceVal = (seqenceValues) => {
+
     this.setState({
       sequenceValues: seqenceValues
     });
   }
+
+  //BPM CHANGE
   setBpmState = (e) => {
     this.setState({
       bpm: e.target.value > 220 ? 220 : e.target.value 
@@ -74,13 +90,6 @@ class Synth extends Component {
   }
 
   triggerSeq = () => {
-    //###########################################################################
-    //###with code below you can create (w/ chrome) chip-sound effect on synth###
-    //###########################################################################
-    // this.setState({
-    //   sequenceValues: this.randomizeSequence()
-    // })
-  
     this.seq.start();
     Tone.Transport.start();
   }
@@ -95,7 +104,7 @@ class Synth extends Component {
   //build a conditional render only for step sequencer
   //IF ONLY POS CHANGED ONLY RENDER ~~
   render() {
-    
+    console.log(this.state.stepFocus);
     return (
       <div className="synth">
         <div className="oscillator">
@@ -113,8 +122,13 @@ class Synth extends Component {
             <button onClick={this.stopSeq}>|||</button>
             <Rows 
               seqPosition={this.state.sequencePosition}
-              setSequenceVal={this.setSequenceVal} 
+              handleStepFocus={this.handleStepFocus}
+              stepFocus={this.state.stepFocus}
             />
+            <ValuePicker 
+              handleStepFocus={this.handleStepFocus} 
+              stepFocus={this.state.stepFocus}
+              />
           </div>
 
           <div className="adsr">

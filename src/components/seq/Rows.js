@@ -64,17 +64,22 @@ class Rows extends Component {
 
   makeRow = () => {
     const steps = [];
-    const select = this.state.partch.map((value, i) => {
-      return (
-        <option value={value} key={`select${value}`}>{i}</option>
-      );
-    })
+    // const select = this.state.partch.map((value, i) => {
+    //   return (
+    //     <option value={value} key={`select${value}`}>{i}</option>
+    //   );
+    // })
     for(let i = 0; i < 32; i++) {
       
       steps.push(
         //ternary operation for marking a progress in step sequence
         i === this.props.seqPosition ? (
-        <div style={{...stepStyle, ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'})}} key={`step${i}`} >
+        <div style={{...stepStyle, 
+          ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'}),
+          ...(i===this.props.stepFocus ? {background: 'rgba(3, 68, 136, 1)'} : {})}} 
+          key={`step${i}`}
+          onClick={() => this.props.handleStepFocus(i)}
+          >
           <div style={{...progressStyle, background: 'rgba(255, 252, 246, 0.7)'}}></div>
           {/* <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
             <option value={null} defaultValue>--</option>
@@ -85,7 +90,12 @@ class Rows extends Component {
           </div>
         </div>
         ) : (
-        <div style={{...stepStyle, ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'})}} key={`step${i}`}>
+        <div style={{...stepStyle, 
+          ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'}),
+          ...(i===this.props.stepFocus ? {background: 'rgba(3, 68, 136, 1)'} : {})}} 
+          key={`step${i}`}
+          onClick={() => this.props.handleStepFocus(i)}
+          >
           <div style={progressStyle}></div>
           {/* <select style={noteSelectStyle} onChange={(e) => this.setVal(e, i)}>
             <option value="" defaultValue>--</option>
@@ -112,7 +122,7 @@ class Rows extends Component {
 
 
   render() {
-    //console.log(this.props.seqPosition);
+    //console.log(this.props);
     const steps = this.makeRow();
     return (
       <div className='sequence-steps'>
