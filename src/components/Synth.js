@@ -103,10 +103,23 @@ class Synth extends Component {
       sequencePosition: 0
     })
   }
+  handlePlayButton = () => {
+    if (Tone.Transport.state === 'stopped') {
+      return (
+        <button className='play-button' onClick={this.triggerSeq}>>>></button>
+      );
+    } else {
+      return (
+        <button className='pause-button' onClick={this.stopSeq}>| |</button>
+      );
+      
+    }
+  }
   
   //build a conditional render only for step sequencer
   //IF ONLY POS CHANGED ONLY RENDER ~~
   render() {
+    const button = this.handlePlayButton();
     return (
       <div className="synth">
         <div className="oscillator">
@@ -120,8 +133,7 @@ class Synth extends Component {
               onChange={this.setBpmState} onBlur={this.setBpmTransport} 
               min='20' max={220}
               /> 
-            <button onClick={this.triggerSeq}>>>></button>
-            <button onClick={this.stopSeq}>|||</button>
+              {button}
             <Rows 
               seqPosition={this.state.sequencePosition}
               handleStepFocus={this.handleStepFocus}

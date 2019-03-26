@@ -45,6 +45,7 @@
     font-size: 0.9rem;
     padding: 0;
     width: 3rem;
+    height: 2rem;
     margin: 0 5px 0 5px;
     color: rgba(237, 236, 232, 1);
     background: rgba(3, 68, 136, 0.8);
@@ -110,3 +111,30 @@ background: transparent;
     cursor: pointer;
 }
 /* VALUE PICKER END */
+
+.play-button {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 900;
+    height: 2rem;
+    width: 3rem;
+    transform: translateY(-1px);
+    color: rgba(237, 236, 232, 1);
+    background: rgba(3, 68, 136, 0.8);
+    padding: none;
+    border: none;
+    border-radius: 3px;
+}
+.pause-button {
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 900;
+    height: 2rem;
+    width: 3rem;
+    transform: translateY(-1px);
+    background: rgba(237, 236, 232, 1);
+    color: rgba(3, 68, 136, 0.8);
+    padding: none;
+    border: 0.5px solid rgba(3, 68, 136, 0.8);
+    border-radius: 3px;
+}
