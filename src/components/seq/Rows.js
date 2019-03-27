@@ -11,7 +11,7 @@ const stepStyle = {
   height: '8vh',
   background: 'rgba(204, 221, 232, 1)',
   border: '1px solid rgba(3, 68, 136, 1)',
-  margin: 2,
+  margin: 4,
   borderRadius: 3,
   cursor: 'pointer'
 }

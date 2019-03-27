@@ -128,12 +128,18 @@ class Synth extends Component {
         <div className="control">
           
           <div className="seq">
-            <label htmlFor='bpm'>BPM:</label>
-            <input name='bpm' id='bpm' type='number' value={this.state.bpm} step='0.01' 
-              onChange={this.setBpmState} onBlur={this.setBpmTransport} 
-              min='20' max={220}
-              /> 
-              {button}
+            <div className='seq-controls'>
+              <label htmlFor='bpm'>BPM:</label>
+              <input name='bpm' id='bpm' type='number' value={this.state.bpm} step='0.01' 
+                onChange={this.setBpmState} onBlur={this.setBpmTransport} 
+                min='20' max={220}
+                /> 
+                {button}
+                <label className="length-switch">
+                  <input type="checkbox" />
+                  <span className="slider round"></span>
+                </label>
+            </div>
             <Rows 
               seqPosition={this.state.sequencePosition}
               handleStepFocus={this.handleStepFocus}
