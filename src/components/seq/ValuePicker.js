@@ -90,7 +90,9 @@ class ValuePicker extends Component {
 }
 
 ValuePicker.propTypes = {
-    stepFocus: PropTypes.number
+    handleStepFocus: PropTypes.func,
+    stepFocus: PropTypes.number,
+    setSequenceVal: PropTypes.func
   }
 
 export default ValuePicker

@@ -70,26 +70,28 @@ const Rows = (props) => {
     return steps;
   }
   
-    const steps = makeRow();
-    return (
-      <div className='sequence-steps'>
-        <div style={rowStyle}>
-          {steps.map((step, index) => {
-            return index<16 ? step : null;
-          })}
-        </div>
-        <div style={rowStyle}>
-          {steps.map((step, index) => {
-            return index>15 ? step : null;
-          })}
-        </div>
+  const steps = makeRow();
+  return (
+    <div className='sequence-steps'>
+      <div style={rowStyle}>
+        {steps.map((step, index) => {
+          return index<16 ? step : null;
+        })}
       </div>
-    )
+      <div style={rowStyle}>
+        {steps.map((step, index) => {
+          return index>15 ? step : null;
+        })}
+      </div>
+    </div>
+  )
   
 }
 
 Rows.propTypes = {
   seqPosition: PropTypes.number,
+  handleStepFocus: PropTypes.func,
+  stepFocus: PropTypes.number,
   sequenceValues: PropTypes.array
 }
 
