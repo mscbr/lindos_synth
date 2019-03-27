@@ -34,9 +34,12 @@
     width: 22%;
     height: 100%;
     padding: 2px;
-    text-align: center;
-    font-weight: 600;
-    letter-spacing: 5px;
+    
+}
+.adsr p {
+  text-align: center;
+  font-weight: 600;
+  letter-spacing: 5px;
 }
 .synth {
     padding-top: 50px;
@@ -148,7 +151,7 @@ background: transparent;
     margin-right: 10px;
 }
 
-/* LENGTH length-SWITCH */
+/* LENGTH SWITCH */
 .length-switch {
     position: relative;
     display: inline-block;
@@ -219,4 +222,31 @@ background: transparent;
   
   .slider.round:before {
     border-radius: 100%;
+  }
+  /* LENGTH SWITCH END*/
+
+  /* ADSR */
+  .adsr-sliders {
+    display:flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  .adsr-slider span{
+    font-size: 0.8rem;
+  }
+  .slider-wrapper {
+    display: block;
+    width: 20px;
+    height: 150px;
+    padding: 0;
+    background: rgba(3, 68, 136, 0.7);
+    border-radius: 25px;
+  }
+  .slider-wrapper input {
+    width: 150px;
+    height: 20px;
+    margin: 0;
+    
+    transform-origin: 75px 75px;
+    transform: rotate(-90deg);
   }

@@ -15,7 +15,7 @@ class Synth extends Component {
         adsr: {
           ampAttack: 0.01,
           ampRelease: 0.4,
-          filtAttack: 0.01,
+          filtSustain: 1,
           filtDecay: 0, 
         },
         sequenceValues: [''],
@@ -26,32 +26,16 @@ class Synth extends Component {
       }
 
       ///INITIAL SET-UP FOR SYNTH & SEQUENCER
-      this.synth = new Tone.DuoSynth(
-        {
-          "voice0": {
-            "envelope": {
-              "attack": this.state.adsr.ampAttack,
-              "release": this.state.adsr.ampRelease
-            },
-            "filterEnvelope": {
-              "attack": this.state.adsr.filtAttack,
-              "decay": this.state.adsr.filtDecay
-            },
-            "oscillator": {
-              "type": "triangle"
-            },
-            //"filterEmve"
-          }
-        }
-      );
-      console.log('state');
-      console.log(this.state);
-      // this.synth.voice0.envelope.attack = 0.4;
-      // this.synth.voice0.envelope.release = 0.8;
-      // this.synth.voice1.envelope.attack = 0.4;
+      this.synth = new Tone.DuoSynth();
       this.gain = new Tone.Gain(0.7).toMaster();
       
-      this.synth.connect(this.gain);
+      //!!!!!!!!!!
+      //MODULATE THIS INSTEAD OF filterEnvelope of synth
+      this.lowPass = new Tone.Filter(250, 'lowpass', (-24));
+      
+      
+      
+      this.synth.connect(this.lowPass.connect(this.gain));
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
         if(value !== "") {
@@ -87,8 +71,20 @@ class Synth extends Component {
     }
     //ADSR values update
     if (prevState.adsr !== this.state.adsr) {
+      //AMP ATTACK
       this.synth.voice0.envelope.attack = this.state.adsr.ampAttack;
       this.synth.voice1.envelope.attack = this.state.adsr.ampAttack;
+      //AMP RELEASE
+      
+      this.synth.voice0.envelope.release = this.state.adsr.ampRelease;
+      this.synth.voice1.envelope.release = this.state.adsr.ampRelease;
+      //FILTER DECAY
+      this.synth.voice0.filterEnvelope.decay = this.state.adsr.filtDecay;
+      this.synth.voice1.filterEnvelope.decay = this.state.adsr.filtDecay;
+      //FILTER SUSTAIN
+      this.synth.voice0.filterEnvelope.sustain = this.state.adsr.filtSustain;
+      this.synth.voice1.filterEnvelope.sustain = this.state.adsr.filtSustain;
+      //console.log(this.synth.voice0.filterEnvelope.decay);
     }
   }
 
@@ -148,7 +144,8 @@ class Synth extends Component {
   handleAdsr = (e) => {
     this.setState({
       adsr: {
-        [e.target.id]: e.target.value
+        ...this.state.adsr,
+        [e.target.id]: parseFloat(e.target.value)
       }
     });
   }
@@ -181,6 +178,7 @@ class Synth extends Component {
   //build a conditional render only for step sequencer
   //IF ONLY POS CHANGED ONLY RENDER ~~
   render() {
+    
     const button = this.handlePlayButton();
     return (
       <div className="synth">
