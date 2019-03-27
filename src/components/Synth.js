@@ -13,6 +13,7 @@ class Synth extends Component {
       this.state = {
         sequenceValues: [''],
         sequencePosition: 0,
+        sequenceLength: 32,
         bpm: 120,
         stepFocus: 0
       }
@@ -36,7 +37,7 @@ class Synth extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    if (prevState.sequenceValues !== this.state.sequenceValues) {
+    if (prevState.sequenceValues !== this.state.sequenceValues || prevState.sequenceLength !== this.state.sequenceLength) {
       this.seq.dispose();
       //assigning sequence with updated values to this.seq
       this.seq = new Tone.Sequence((time, value) => {
@@ -44,7 +45,7 @@ class Synth extends Component {
         if(value !== "" && value !== '0') {
           this.synth.triggerAttackRelease(value, "8n", time);
         }
-      }, this.state.sequenceValues, "16n").start();
+      }, this.state.sequenceValues.slice(0, this.state.sequenceLength), "16n").start();
 
       //sequence will only start if it was already playing
       if(Tone.Transport.state !== 'stopped') {
@@ -58,7 +59,7 @@ class Synth extends Component {
   positionSet = () => {
     let position = Tone.Transport.position.slice();
     
-    let seqPosVal = (parseInt(position.slice(0, 1)%2))*16 + parseInt(position.slice(2,3))*4 + parseInt(position.slice(4,5));
+    let seqPosVal = ((parseInt(position.slice(0, 1)%2))*16 + parseInt(position.slice(2,3))*4 + parseInt(position.slice(4,5)))%this.state.sequenceLength;
     this.setState({
       sequencePosition: seqPosVal
     })
@@ -89,6 +90,22 @@ class Synth extends Component {
       })
     }
     Tone.Transport.bpm.rampTo(this.state.bpm > 20 ? this.state.bpm : 20, 2);
+  }
+  //SEQ LENGTH CHANGE
+  handleLengthToggle = (e) => {
+    
+    if (this.state.sequenceLength === 32) {
+      this.setState({
+        sequenceLength: 16
+      });
+      return;
+    } else {
+      this.setState({
+        sequenceLength: 32
+      });
+      return;
+    }
+    
   }
 
   triggerSeq = () => {
@@ -136,7 +153,7 @@ class Synth extends Component {
                 min='20' max={220}
                 /> 
               <label className="length-switch">
-                <input type="checkbox" />
+                <input type="checkbox" onChange={this.handleLengthToggle} />
                 <span className="slider round">
                   32/16
                 </span>
