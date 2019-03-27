@@ -31,9 +31,6 @@ const valueDisplayStyle = {
 }
 
 const Rows = (props) => {
-  //put all state into ValuePicker, and transform to functional comp
-  //++update propTypes
-  //RENAME
 
   const makeRow = () => {
     const steps = [];
