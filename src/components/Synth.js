@@ -5,12 +5,19 @@ import Tone from 'tone'
 
 import Rows from './seq/Rows'
 import ValuePicker from './seq/ValuePicker'
+import Adsr from './adsr/Adsr'
 
 
 class Synth extends Component {
   constructor(props) {
       super(props);
       this.state = {
+        adsr: {
+          ampAttack: 0.01,
+          ampRelease: 0.4,
+          filtAttack: 0.01,
+          filtDecay: 0, 
+        },
         sequenceValues: [''],
         sequencePosition: 0,
         sequenceLength: 32,
@@ -19,11 +26,36 @@ class Synth extends Component {
       }
 
       ///INITIAL SET-UP FOR SYNTH & SEQUENCER
-      this.synth = new Tone.Synth().toMaster();
+      this.synth = new Tone.DuoSynth(
+        {
+          "voice0": {
+            "envelope": {
+              "attack": this.state.adsr.ampAttack,
+              "release": this.state.adsr.ampRelease
+            },
+            "filterEnvelope": {
+              "attack": this.state.adsr.filtAttack,
+              "decay": this.state.adsr.filtDecay
+            },
+            "oscillator": {
+              "type": "triangle"
+            },
+            //"filterEmve"
+          }
+        }
+      );
+      console.log('state');
+      console.log(this.state);
+      // this.synth.voice0.envelope.attack = 0.4;
+      // this.synth.voice0.envelope.release = 0.8;
+      // this.synth.voice1.envelope.attack = 0.4;
+      this.gain = new Tone.Gain(0.7).toMaster();
+      
+      this.synth.connect(this.gain);
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
         if(value !== "") {
-          this.synth.triggerAttackRelease(value, "16n", time);
+          this.synth.triggerAttackRelease(value, "4n", time);
         }
         
       }, this.state.sequenceValues, "16n");
@@ -52,6 +84,11 @@ class Synth extends Component {
         this.stopSeq();
         this.triggerSeq();
       }
+    }
+    //ADSR values update
+    if (prevState.adsr !== this.state.adsr) {
+      this.synth.voice0.envelope.attack = this.state.adsr.ampAttack;
+      this.synth.voice1.envelope.attack = this.state.adsr.ampAttack;
     }
   }
 
@@ -108,6 +145,14 @@ class Synth extends Component {
     
   }
 
+  handleAdsr = (e) => {
+    this.setState({
+      adsr: {
+        [e.target.id]: e.target.value
+      }
+    });
+  }
+
   triggerSeq = () => {
     this.seq.start();
     Tone.Transport.start();
@@ -158,7 +203,6 @@ class Synth extends Component {
                   32/16
                 </span>
               </label>
-                
             </div>
             <Rows 
               seqPosition={this.state.sequencePosition}
@@ -170,11 +214,16 @@ class Synth extends Component {
               handleStepFocus={this.handleStepFocus} 
               stepFocus={this.state.stepFocus}
               setSequenceVal={this.setSequenceVal}
-              />
+            />
           </div>
 
           <div className="adsr">
-          ADSR
+            <p>ADSR</p>
+            <hr />
+            <Adsr 
+              adsrVal={this.state.adsr} 
+              handleAdsr={this.handleAdsr}
+            />
           </div>
         </div>
       </div>
