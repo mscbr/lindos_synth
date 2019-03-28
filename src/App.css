@@ -17,7 +17,8 @@
     border: solid 3px rgba(3, 68, 136, 1);
     color: rgb(13, 94, 175);
     border-radius: 5px;
-    ;
+    display:flex;
+    min-width: 540px;
 }
 .seq {
     
@@ -32,6 +33,7 @@
     display: block;
     float: right;
     width: 22%;
+    min-width: 130px;
     height: 100%;
     padding: 2px;
     
@@ -249,4 +251,18 @@ background: transparent;
     
     transform-origin: 75px 75px;
     transform: rotate(-90deg);
+  }
+  .master-slider {
+    height: 25px;
+    padding: 0;
+    border: 1px solid rgba(3, 68, 136, 0.7);
+    border-radius: 25px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+  .master-slider input {
+    margin: 5px 3px 15px; 
+    width: 95%;
+    
   }

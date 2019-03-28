@@ -22,6 +22,7 @@ class Synth extends Component {
         sequencePosition: 0,
         sequenceLength: 32,
         bpm: 120,
+        gain: 0.7,
         stepFocus: 0
       }
 
@@ -55,7 +56,7 @@ class Synth extends Component {
 /////////////////////////////////////////////////////
 
   componentDidUpdate(prevProps, prevState) {
-
+    this.gain.gain.value = this.state.gain;
     if (prevState.sequenceValues !== this.state.sequenceValues || prevState.sequenceLength !== this.state.sequenceLength) {
       this.seq.dispose();
       //assigning sequence with updated values to this.seq
@@ -97,13 +98,11 @@ class Synth extends Component {
       sequencePosition: seqPosVal
     })
   }
-
   handleStepFocus = (step) => {
     this.setState({
       stepFocus: step
     })
   }
-
   setSequenceVal = (seqenceValues) => {
     this.setState({
       sequenceValues: seqenceValues
@@ -126,7 +125,6 @@ class Synth extends Component {
   }
   //SEQ LENGTH CHANGE
   handleLengthToggle = (e) => {
-    
     if (this.state.sequenceLength === 32) {
       this.setState({
         sequenceLength: 16
@@ -138,9 +136,8 @@ class Synth extends Component {
       });
       return;
     }
-    
   }
-
+  //HANDLING CHANGE OF 'ADSR' VALUES
   handleAdsr = (e) => {
     this.setState({
       adsr: {
@@ -171,8 +168,12 @@ class Synth extends Component {
       return (
         <button className='pause-button' onClick={this.stopSeq}>| |</button>
       );
-      
     }
+  }
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    });
   }
   
   render() {
@@ -214,12 +215,21 @@ class Synth extends Component {
           </div>
 
           <div className="adsr">
-            <p>ADSR</p>
+            <p>ARFH</p>
             <hr />
             <Adsr 
               adsrVal={this.state.adsr} 
               handleAdsr={this.handleAdsr}
             />
+            <hr />
+            <div className="master-slider">
+              <input id="gain" type="range"
+                min={0} max={1} step={0.01}
+                value={this.state.gain}
+                onChange={this.handleChange}
+              />
+              <span>MASTER: {this.state.gain}</span>
+            </div>
           </div>
         </div>
       </div>
