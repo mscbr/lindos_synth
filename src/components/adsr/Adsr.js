@@ -1,11 +1,10 @@
-import React from 'react'
+ import React from 'react'
 
 
 const Adsr = (props) => {
     
     return (
         <div className='adsr-sliders'>
-            
             <div className="adsr-slider">
                 <span>AMP</span>
                 <div className="slider-wrapper">
@@ -31,24 +30,24 @@ const Adsr = (props) => {
             <div className="adsr-slider">
                 <span>FILT</span>
                 <div className="slider-wrapper">
-                    <input id="filtSustain" type="range" 
-                        min={0.1} max={1} 
-                        value={props.adsrVal.filtSustain} step={0.1} 
+                    <input id="filtFreq" type="range" 
+                        min={25} max={1800} 
+                        value={props.adsrVal.filtFreq} step={10} 
                         onChange={props.handleAdsr}
                     />
                 </div>
-                <span>S: <br />{props.adsrVal.filtSustain}</span>
+                <span>FREQ: <br />{props.adsrVal.filtFreq}</span>
             </div>
             <div className="adsr-slider">
-                <span>FILT</span>
+                <span>OSC</span>
                 <div className="slider-wrapper">
-                    <input id="filtDecay" type="range" 
-                        min={0.1} max={2} 
-                        value={props.adsrVal.filtDecay} step={0.1} 
+                    <input id="oscHarm" type="range" 
+                        min={0} max={2} 
+                        value={props.adsrVal.oscHarm} step={0.01} 
                         onChange={props.handleAdsr}
                     />
                 </div>
-                <span>D: <br />{props.adsrVal.filtDecay}</span>
+                <span>HARM: <br />{props.adsrVal.oscHarm}</span>
             </div>
         </div>
     );

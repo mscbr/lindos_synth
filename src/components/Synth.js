@@ -15,8 +15,8 @@ class Synth extends Component {
         adsr: {
           ampAttack: 0.01,
           ampRelease: 0.4,
-          filtSustain: 1,
-          filtDecay: 0, 
+          filtFreq: 1800,
+          oscHarm: 1.2, 
         },
         sequenceValues: [''],
         sequencePosition: 0,
@@ -26,19 +26,22 @@ class Synth extends Component {
       }
 
       ///INITIAL SET-UP FOR SYNTH & SEQUENCER
-      this.synth = new Tone.DuoSynth();
+      this.synth = new Tone.DuoSynth({
+        "harmonicity": 1.2
+      });
       this.gain = new Tone.Gain(0.7).toMaster();
       
       //!!!!!!!!!!
       //MODULATE THIS INSTEAD OF filterEnvelope of synth
-      this.lowPass = new Tone.Filter(250, 'lowpass', (-24));
+      this.filtEnv = new Tone.Envelope(0.1,0.2, 1, 0.4);
+      this.lowPass = new Tone.Filter(18000, 'lowpass', (-24));
       
       
       
       this.synth.connect(this.lowPass.connect(this.gain));
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
-        if(value !== "") {
+        if(value !== "" && value !== '0') {
           this.synth.triggerAttackRelease(value, "4n", time);
         }
         
@@ -75,16 +78,13 @@ class Synth extends Component {
       this.synth.voice0.envelope.attack = this.state.adsr.ampAttack;
       this.synth.voice1.envelope.attack = this.state.adsr.ampAttack;
       //AMP RELEASE
-      
       this.synth.voice0.envelope.release = this.state.adsr.ampRelease;
       this.synth.voice1.envelope.release = this.state.adsr.ampRelease;
-      //FILTER DECAY
-      this.synth.voice0.filterEnvelope.decay = this.state.adsr.filtDecay;
-      this.synth.voice1.filterEnvelope.decay = this.state.adsr.filtDecay;
-      //FILTER SUSTAIN
-      this.synth.voice0.filterEnvelope.sustain = this.state.adsr.filtSustain;
-      this.synth.voice1.filterEnvelope.sustain = this.state.adsr.filtSustain;
-      //console.log(this.synth.voice0.filterEnvelope.decay);
+      //OSC HARMONICS
+      this.synth.harmonicity.value = this.state.adsr.oscHarm;
+      //FILTER FREQ
+      this.lowPass.frequency.value = this.state.adsr.filtFreq;
+      
     }
   }
 
@@ -175,8 +175,6 @@ class Synth extends Component {
     }
   }
   
-  //build a conditional render only for step sequencer
-  //IF ONLY POS CHANGED ONLY RENDER ~~
   render() {
     
     const button = this.handlePlayButton();
