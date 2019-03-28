@@ -264,5 +264,13 @@ background: transparent;
   .master-slider input {
     margin: 5px 3px 15px; 
     width: 95%;
-    
+  }
+  /* ANALYSER */
+  #analyser {
+    border: 1px solid rgba(237, 236, 232, 1);
+    background: rgba(3, 68, 136, 1);
+    margin: 10px 0 0 10px;
+    height: 150px;
+    width: 150px;
+    border-radius: 15px;
   }

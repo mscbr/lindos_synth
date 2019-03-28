@@ -6,6 +6,7 @@ import Tone from 'tone'
 import Rows from './seq/Rows'
 import ValuePicker from './seq/ValuePicker'
 import Adsr from './adsr/Adsr'
+import Analyser from './oscillator/Analyser'
 
 
 class Synth extends Component {
@@ -31,15 +32,10 @@ class Synth extends Component {
         "harmonicity": 1.2
       });
       this.gain = new Tone.Gain(0.7).toMaster();
-      
-      //!!!!!!!!!!
-      //MODULATE THIS INSTEAD OF filterEnvelope of synth
-      this.filtEnv = new Tone.Envelope(0.1,0.2, 1, 0.4);
       this.lowPass = new Tone.Filter(18000, 'lowpass', (-24));
+      this.analyser = new Tone.Analyser('fft', 64);
       
-      
-      
-      this.synth.connect(this.lowPass.connect(this.gain));
+      this.synth.connect(this.lowPass.connect(this.analyser.connect(this.gain)));
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
         if(value !== "" && value !== '0') {
@@ -177,15 +173,17 @@ class Synth extends Component {
   }
   
   render() {
-    
+    //console.log(this.analyser.getValue());
     const button = this.handlePlayButton();
     return (
       <div className="synth">
         <div className="oscillator">
-          OSCILLATOR
+          <div className='scope'>
+            <Analyser waveArr={this.analyser.getValue()} />
+          </div>
+          <div className="logo"></div>
         </div> 
         <div className="control">
-          
           <div className="seq">
             <div className='seq-controls'>
               {button}
@@ -213,7 +211,6 @@ class Synth extends Component {
               setSequenceVal={this.setSequenceVal}
             />
           </div>
-
           <div className="adsr">
             <p>ARFH</p>
             <hr />
