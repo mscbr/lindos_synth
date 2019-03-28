@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-
+import Partch from '../../partch301014b.png'
 
 
 class Analyser extends Component {
@@ -75,6 +75,7 @@ class Analyser extends Component {
 
         return (
             <div>
+                <img src={Partch} alt="harry partch" id='partch' />
                 <canvas ref={this.canvasRef} id='analyser'></canvas>
             </div>
         )
