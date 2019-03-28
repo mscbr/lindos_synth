@@ -1,4 +1,5 @@
 .oscillator {
+    display: flex;
     width: 85%;
     min-height: 25%;
     margin: 0 auto;
@@ -282,4 +283,18 @@ background: transparent;
     position: absolute;
     margin: 15px 0 0 10px;
     opacity: 0.6;
+  }
+
+  #sustain-button {
+    border-radius: 15px;
+    font-size: 2rem;
+    padding: 1px;
+    margin: 10px 0 13px 10px;
+    background: rgba(204, 221, 232, 1);
+    color: rgba(3, 68, 136, 1);
+    box-shadow: 2px 2px #000;
+    cursor: pointer;
+  }
+  #sustain-button:active {
+    box-shadow: none;
   }

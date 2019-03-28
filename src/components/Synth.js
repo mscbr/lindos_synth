@@ -166,6 +166,9 @@ class Synth extends Component {
       );
     }
   }
+  handleSustainButton = () => {
+
+  }
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
@@ -181,6 +184,14 @@ class Synth extends Component {
           <div className='scope'>
             <Analyser waveArr={this.analyser.getValue()} />
           </div>
+          <button id="sustain-button" 
+            onMouseDown={(e) => {
+              console.log(e.target.value);
+              this.synth.triggerAttack('D4');
+              this.setState({});
+            }}
+            onMouseUp={() => this.synth.triggerRelease()}
+          >♩</button>
           <div className="logo"></div>
         </div> 
         <div className="control">
