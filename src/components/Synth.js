@@ -50,7 +50,7 @@ class Synth extends Component {
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
-
+  
   componentDidUpdate(prevProps, prevState) {
     this.gain.gain.value = this.state.gain;
     if (prevState.sequenceValues !== this.state.sequenceValues || prevState.sequenceLength !== this.state.sequenceLength) {
