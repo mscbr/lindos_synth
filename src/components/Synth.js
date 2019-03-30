@@ -7,6 +7,7 @@ import Rows from './seq/Rows'
 import ValuePicker from './seq/ValuePicker'
 import Adsr from './adsr/Adsr'
 import Analyser from './oscillator/Analyser'
+import WaveSelector from './oscillator/WaveSelector'
 
 
 class Synth extends Component {
@@ -192,6 +193,7 @@ class Synth extends Component {
             }}
             onMouseUp={() => this.synth.triggerRelease()}
           >♩</button>
+          <WaveSelector />
           <div className="logo"></div>
         </div> 
         <div className="control">

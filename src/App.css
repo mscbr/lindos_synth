@@ -298,3 +298,14 @@ background: transparent;
   #sustain-button:active {
     box-shadow: none;
   }
+
+  .wave-selector {
+    padding: 20px;
+    text-align: center;
+  }
+  .wave-selector select {
+    display: block;
+    margin: 10px 0 20px 0;
+    background: rgba(3, 68, 136, 0.6);
+    color: white;
+  }
