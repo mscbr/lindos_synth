@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import Partch from '../../partch301014b.png'
 
 
@@ -41,7 +42,10 @@ class Analyser extends Component {
             </div>
         )
     }
-    
 }
 
+
+Analyser.propTypes = {
+    waveArr: PropTypes.object
+}
 export default Analyser

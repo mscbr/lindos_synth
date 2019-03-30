@@ -1,4 +1,5 @@
  import React from 'react'
+ import PropTypes from 'prop-types'
 
 
 const Adsr = (props) => {
@@ -53,4 +54,9 @@ const Adsr = (props) => {
     );
 }
 
+
+Adsr.propTypes = {
+    adsrVal: PropTypes.object,
+    handleAdsr: PropTypes.func
+}
 export default Adsr
