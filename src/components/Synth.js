@@ -20,6 +20,8 @@ class Synth extends Component {
           filtFreq: 1800,
           oscHarm: 1.2, 
         },
+        voice0: 'sine',
+        voice1: 'sine',
         sequenceValues: [''],
         sequencePosition: 0,
         sequenceLength: 32,
@@ -82,7 +84,10 @@ class Synth extends Component {
       this.synth.harmonicity.value = this.state.adsr.oscHarm;
       //FILTER FREQ
       this.lowPass.frequency.value = this.state.adsr.filtFreq;
-      
+    }
+    if (prevProps.voice0 !== this.state.voice0 || prevProps.voice1 !== this.state.voice1) {
+      this.synth.voice0.oscillator.type = this.state.voice0;
+      this.synth.voice1.oscillator.type = this.state.voice1;
     }
   }
 
@@ -193,7 +198,7 @@ class Synth extends Component {
             }}
             onMouseUp={() => this.synth.triggerRelease()}
           >♩</button>
-          <WaveSelector />
+          <WaveSelector handleChange={this.handleChange} />
           <div className="logo"></div>
         </div> 
         <div className="control">
