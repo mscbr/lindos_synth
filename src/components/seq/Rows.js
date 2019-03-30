@@ -40,7 +40,7 @@ const Rows = (props) => {
         i === props.seqPosition ? (
         <div style={{...stepStyle, 
           ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'}),
-          ...(i===props.stepFocus ? {background: 'rgba(3, 68, 136, 1)'} : {})}} 
+          ...(i===props.stepFocus ? {background: 'rgba(3, 68, 136, 1)', color: 'rgba(237, 236, 232, 1)'} : {})}} 
           key={`step${i}`}
           onClick={() => props.handleStepFocus(i)}
           >
@@ -52,7 +52,7 @@ const Rows = (props) => {
         ) : (
         <div style={{...stepStyle, 
           ...(i%4 ? {} : {background: 'rgba(3, 68, 136, 0.7)', color: 'rgba(255, 252, 246, 1)'}),
-          ...(i===props.stepFocus ? {background: 'rgba(3, 68, 136, 1)'} : {})}} 
+          ...(i===props.stepFocus ? {background: 'rgba(3, 68, 136, 1)', color: 'rgba(237, 236, 232, 1)'} : {})}} 
           key={`step${i}`}
           onClick={() => props.handleStepFocus(i)}
           >
