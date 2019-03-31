@@ -309,3 +309,34 @@ background: transparent;
     background: rgba(3, 68, 136, 0.6);
     color: white;
   }
+
+  .reverb {
+    background: rgba(237, 236, 232, 1);
+    position: absolute;
+    margin: -20px 0 0 32%;
+    text-align: center;
+    border: 1px solid black;
+    box-shadow: 2px 2px #000;
+  }
+  .reverb::before {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width:73%;
+    background: black;
+    z-index: 20;
+    clip-path: polygon(100% 6.9%, 91% 6.9%, 91% 0);
+  }
+  .reverb-sliders span {
+    padding: 15px;
+  }
+  .reverb-sliders {
+    display: flex;
+    margin-bottom: 10px;
+    
+  }
+  .reverb .slider-wrapper {
+    margin: 0 auto;
+    z-index: 20;
+  }
+  

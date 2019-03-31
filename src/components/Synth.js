@@ -44,7 +44,7 @@ class Synth extends Component {
         wet: 0.0
       });
       
-      this.synth.connect(this.lowPass.connect(this.analyser.connect(this.gain)));
+      this.synth.connect(this.lowPass.connect(this.reverb.connect(this.analyser.connect(this.gain))));
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
         if(value !== "" && value !== '0') {
@@ -96,7 +96,10 @@ class Synth extends Component {
       this.synth.voice0.oscillator.type = this.state.voice0;
       this.synth.voice1.oscillator.type = this.state.voice1;
     }
-    //if(prevProps)
+    if(prevState.reverbWet !== this.state.reverbWet || prevState.reverbRoomSize !== this.state.reverbRoomSize) {
+      this.reverb.wet.value = this.state.reverbWet;
+      this.reverb.roomSize.value = this.state.reverbRoomSize;
+    }
   }
 
   //CURRENT SEQUENCE PROGRESS POSITION
@@ -190,8 +193,6 @@ class Synth extends Component {
   }
   
   render() {
-    
-    console.log(this.analyser.getValue());
     const button = this.handlePlayButton();
     return (
       <div className="synth">
