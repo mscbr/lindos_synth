@@ -8,6 +8,7 @@ import ValuePicker from './seq/ValuePicker'
 import Adsr from './adsr/Adsr'
 import Analyser from './oscillator/Analyser'
 import WaveSelector from './oscillator/WaveSelector'
+import Reverb from './oscillator/Reverb'
 
 
 class Synth extends Component {
@@ -22,6 +23,8 @@ class Synth extends Component {
         },
         voice0: 'sine',
         voice1: 'sine',
+        reverbWet: 0.0,
+        reverbRoomSize: 0.5,
         sequenceValues: [''],
         sequencePosition: 0,
         sequenceLength: 32,
@@ -37,6 +40,9 @@ class Synth extends Component {
       this.gain = new Tone.Gain(0.7).toMaster();
       this.lowPass = new Tone.Filter(18000, 'lowpass', (-24));
       this.analyser = new Tone.Analyser('fft', 64);
+      this.reverb = new Tone.JCReverb({
+        wet: 0.0
+      });
       
       this.synth.connect(this.lowPass.connect(this.analyser.connect(this.gain)));
       this.seq = new Tone.Sequence((time, value) => {
@@ -85,10 +91,12 @@ class Synth extends Component {
       //FILTER FREQ
       this.lowPass.frequency.value = this.state.adsr.filtFreq;
     }
-    if (prevProps.voice0 !== this.state.voice0 || prevProps.voice1 !== this.state.voice1) {
+    //OSCILLATORS WAVE type update
+    if (prevState.voice0 !== this.state.voice0 || prevState.voice1 !== this.state.voice1) {
       this.synth.voice0.oscillator.type = this.state.voice0;
       this.synth.voice1.oscillator.type = this.state.voice1;
     }
+    //if(prevProps)
   }
 
   //CURRENT SEQUENCE PROGRESS POSITION
@@ -182,7 +190,8 @@ class Synth extends Component {
   }
   
   render() {
-    //console.log(this.analyser.getValue());
+    
+    console.log(this.analyser.getValue());
     const button = this.handlePlayButton();
     return (
       <div className="synth">
@@ -199,6 +208,7 @@ class Synth extends Component {
             onMouseUp={() => this.synth.triggerRelease()}
           >♩</button>
           <WaveSelector handleChange={this.handleChange} />
+          <Reverb handleChange={this.handleChange} stateData={[this.state.reverbWet, this.state.reverbRoomSize]} />
           <div className="logo"></div>
         </div> 
         <div className="control">
