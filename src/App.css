@@ -286,6 +286,12 @@ background: transparent;
     position: absolute;
     margin: 15px 0 0 10px;
     opacity: 0.6;
+    animation: opacity-fade 6s infinite;
+  }
+  @keyframes opacity-fade {
+    0% {opacity: 0;}
+    50% {opacity: 0.4}
+    100% {opacity: 0;}
   }
 
   #sustain-button {
@@ -316,7 +322,7 @@ background: transparent;
   .reverb {
     background: rgba(237, 236, 232, 1);
     position: absolute;
-    margin: -20px 0 0 32%;
+    margin: -20px 0 0 28%;
     text-align: center;
     border: 1px solid black;
     box-shadow: 2px 2px #000;
@@ -341,5 +347,33 @@ background: transparent;
   .reverb .slider-wrapper {
     margin: 0 auto;
     z-index: 20;
+  }
+  .recorder-playback audio {
+    height: 50px;
+    border-radius: 0;
+    
+    width: 300px;
+  }
+  .recorder {
+    margin: 20px 0 0 23%;
+  }
+  .recorder-controls button {
+    width: 300px;
+    height: 50px;
+    margin: 15px 0 0 0;
+    font-size: 1.3rem;
+    letter-spacing: 5px;
+  }
+  .recorder-record {
+    background: rgba(23, 143, 214, 1);
+    color: rgba(255, 252, 246, 1);
+    border: 1px solid black;
+    box-shadow: 2px 2px #000;
+    transition: 0.3s;
+  }
+  .recorder-stop {
+    background: red;
+    color: rgba(255, 252, 246, 1);
+    transition: 0.3s;
   }
   

@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import Tone from 'tone'
 
-//import '../App.css'
-
 import Rows from './seq/Rows'
 import ValuePicker from './seq/ValuePicker'
 import Adsr from './adsr/Adsr'
 import Analyser from './oscillator/Analyser'
 import WaveSelector from './oscillator/WaveSelector'
 import Reverb from './oscillator/Reverb'
+import Recorder from './oscillator/Recorder'
 
 
 class Synth extends Component {
@@ -30,7 +29,8 @@ class Synth extends Component {
         sequenceLength: 32,
         bpm: 120,
         gain: 0.7,
-        stepFocus: 0
+        stepFocus: 0,
+        //recordings: []
       }
 
       ///INITIAL SET-UP FOR SYNTH & SEQUENCER
@@ -43,8 +43,13 @@ class Synth extends Component {
       this.reverb = new Tone.JCReverb({
         wet: 0.0
       });
+      //RECORDER SETUP
+      this.actx = Tone.context;
+      this.dest = this.actx.createMediaStreamDestination();
+      this.recorder = new MediaRecorder(this.dest.stream);
       
       this.synth.connect(this.lowPass.connect(this.reverb.connect(this.analyser.connect(this.gain))));
+      this.analyser.connect(this.dest);
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
         if(value !== "" && value !== '0') {
@@ -183,9 +188,6 @@ class Synth extends Component {
       );
     }
   }
-  handleSustainButton = () => {
-
-  }
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
@@ -202,7 +204,6 @@ class Synth extends Component {
           </div>
           <button id="sustain-button" 
             onMouseDown={(e) => {
-              console.log(e.target.value);
               this.synth.triggerAttack('D4');
               this.setState({});
             }}
@@ -210,6 +211,7 @@ class Synth extends Component {
           >♩</button>
           <WaveSelector handleChange={this.handleChange} />
           <Reverb handleChange={this.handleChange} stateData={[this.state.reverbWet, this.state.reverbRoomSize]} />
+          <Recorder recorder={this.recorder} />
           <div className="logo"></div>
         </div> 
         <div className="control">
