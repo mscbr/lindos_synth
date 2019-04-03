@@ -30,8 +30,7 @@ class Synth extends Component {
         sequenceLength: 32,
         bpm: 120,
         gain: 0.7,
-        stepFocus: 0,
-        //recordings: []
+        stepFocus: 0
       }
 
       ///INITIAL SET-UP FOR SYNTH & SEQUENCER
@@ -40,7 +39,6 @@ class Synth extends Component {
       });
       this.gain = new Tone.Gain(0.7).toMaster();
       this.lowPass = new Tone.Filter(18000, 'lowpass', (-24));
-      //this.analyser = new Tone.Analyser('fft', 64);
       this.reverb = new Tone.JCReverb({
         wet: 0.0
       });
@@ -196,13 +194,13 @@ class Synth extends Component {
   }
   
   render() {
-    console.log(this.state.sequenceValues[this.state.stepFocus]);
+    console.log(this.state.sequenceValues[this.state.sequencePosition]);
     const button = this.handlePlayButton();
     return (
       <div className="synth">
         <div className="oscillator">
           <div className='scope'>
-            <Analyser  />
+            <Analyser note={this.state.sequenceValues[this.state.sequencePosition]} />
           </div>
           <button id="sustain-button" 
             onMouseDown={(e) => {
