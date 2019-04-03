@@ -17,7 +17,7 @@ const Analyser = (props) => {
     return (
         <div>
             <div className="fract-wrapper">
-                <div ref={layer1} className="layer1" id="layer1">
+                <div className="layer1" id="layer1">
                     {layers}
                 </div>
             </div>
