@@ -1,15 +1,11 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 
 const Analyser = (props) => {
-    let layer1 = React.createRef();
-    //DO: css class assignment
     let counter = 0
     const divLayer = () => {
         counter++; 
         if (counter < 15) {
-
             return (
                 <div className='color-down' >{divLayer()}</div>
             )
@@ -18,8 +14,6 @@ const Analyser = (props) => {
         }
     }
     const layers = divLayer();
-    
-    console.log(layer1);
     return (
         <div>
             <div className="fract-wrapper">
@@ -32,8 +26,4 @@ const Analyser = (props) => {
     )
 }
 
-
-Analyser.propTypes = {
-    waveArr: PropTypes.object
-}
 export default Analyser
