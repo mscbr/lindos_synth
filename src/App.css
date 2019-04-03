@@ -11,7 +11,7 @@
 }
 .control {
     width: 85%;
-    min-height: 52%;
+    min-height: 55%;
     margin: 0 auto;
     background: rgba(255, 252, 246, 1);
     border: solid 3px rgba(3, 68, 136, 1);
@@ -272,12 +272,13 @@ background: transparent;
   /* ANALYSER */
   #analyser {
     border: 1px solid rgba(237, 236, 232, 1);
-    background: rgba(3, 68, 136, 1);
+    background: rgba(204, 221, 232, 1);
     margin: 10px 0 0 10px;
     height: 150px;
     width: 150px;
     border-radius: 15px;
     opacity: 0.9;
+    box-shadow:  2px 2px #000;
   }
   #partch {
     border: 1px solid rgba(237, 236, 232, 1);
@@ -365,15 +366,87 @@ background: transparent;
     letter-spacing: 5px;
   }
   .recorder-record {
-    background: rgba(23, 143, 214, 1);
+    background: rgba(3, 68, 136, 0.6);
     color: rgba(255, 252, 246, 1);
     border: 1px solid black;
     box-shadow: 2px 2px #000;
     transition: 0.3s;
   }
   .recorder-stop {
-    background: red;
+    background: tomato;
     color: rgba(255, 252, 246, 1);
     transition: 0.3s;
   }
+  #lindos-synth-logo {
+    height: 100px;
+    width: auto;
+    margin: 35px 5px 0 20px;
+  }
+  
+  .fract-wrapper {
+    position:absolute;
+    content: '';
+    margin: 0 0 0 10px;
+    width:150px;
+    height:150px;
+    z-index: 5;
+    overflow: hidden;
+  }
+  
+  .fract-wrapper .layer1,
+  .fract-wrapper .layer2 {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:99%;
+    height:100%;
+    display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+  }
+      
+  .fract-wrapper .layer1,
+  .fract-wrapper .layer1 * {
+    background:rgba(237, 236, 232, 0.6);
+    border: 0.5px dashed grey;
+    border-radius: 15%;
+  } 
+  
+  
+  .fract-wrapper .layer1 *,
+  .fract-wrapper .layer2 * {
+      display:-webkit-box;
+    -webkit-box-pack:center;
+    -webkit-box-align:center;
+      width:80%;
+      height:80%;
+      margin-left: 4px;
+  } 
+ 
+  
+  
+  
+  /* --------- Animation --------- */
+  .fract-wrapper .layer1,
+  .fract-wrapper .layer1 * {
+      animation-name: spin-clockwise;
+      animation-duration: 60s;
+      animation-iteration-count: infinite;
+      animation-timing-function: cubic-bezier(0.82, 0.24, 0.25, 0.75);
+      box-shadow:inset 0 2px 12px rgba(255,255,255,0.8);
+  }
+  
+
+  
+  /* Animation: Clockwise */
+  @keyframes spin-clockwise {
+      0%   { -webkit-transform: rotate(0deg);   }
+      100% { -webkit-transform: rotate(720deg); }
+  }
+  
+  
+  
+  
+  
+
   

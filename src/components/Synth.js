@@ -8,6 +8,7 @@ import Analyser from './oscillator/Analyser'
 import WaveSelector from './oscillator/WaveSelector'
 import Reverb from './oscillator/Reverb'
 import Recorder from './oscillator/Recorder'
+import Logo from '../lindos-synth-logo.png'
 
 
 class Synth extends Component {
@@ -39,7 +40,7 @@ class Synth extends Component {
       });
       this.gain = new Tone.Gain(0.7).toMaster();
       this.lowPass = new Tone.Filter(18000, 'lowpass', (-24));
-      this.analyser = new Tone.Analyser('fft', 64);
+      //this.analyser = new Tone.Analyser('fft', 64);
       this.reverb = new Tone.JCReverb({
         wet: 0.0
       });
@@ -48,8 +49,8 @@ class Synth extends Component {
       this.dest = this.actx.createMediaStreamDestination();
       this.recorder = new MediaRecorder(this.dest.stream);
       
-      this.synth.connect(this.lowPass.connect(this.reverb.connect(this.analyser.connect(this.gain))));
-      this.analyser.connect(this.dest);
+      this.synth.connect(this.lowPass.connect(this.reverb.connect(this.gain)));
+      this.gain.connect(this.dest);
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
         if(value !== "" && value !== '0') {
@@ -195,12 +196,13 @@ class Synth extends Component {
   }
   
   render() {
+    console.log(this.state.sequenceValues[this.state.stepFocus]);
     const button = this.handlePlayButton();
     return (
       <div className="synth">
         <div className="oscillator">
           <div className='scope'>
-            <Analyser waveArr={this.analyser.getValue()} />
+            <Analyser  />
           </div>
           <button id="sustain-button" 
             onMouseDown={(e) => {
@@ -212,7 +214,9 @@ class Synth extends Component {
           <WaveSelector handleChange={this.handleChange} />
           <Reverb handleChange={this.handleChange} stateData={[this.state.reverbWet, this.state.reverbRoomSize]} />
           <Recorder recorder={this.recorder} />
-          <div className="logo"></div>
+          <div className="logo">
+            <img src={Logo} alt='lindos synth logo' id='lindos-synth-logo' />
+          </div>
         </div> 
         <div className="control">
           <div className="seq">
