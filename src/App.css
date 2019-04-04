@@ -352,7 +352,6 @@ background: transparent;
   .recorder-playback audio {
     height: 50px;
     border-radius: 0;
-    
     width: 300px;
   }
   .recorder {
@@ -376,6 +375,9 @@ background: transparent;
     background: tomato;
     color: rgba(255, 252, 246, 1);
     transition: 0.3s;
+  }
+  .recorder-logo {
+    display: none;
   }
   #lindos-synth-logo {
     height: 100px;
@@ -436,18 +438,6 @@ background: transparent;
       box-shadow:inset 0 2px 12px rgba(255,255,255,0.8);
   }
   
-  /* Color Down Effect */
-  /* .color-down {
-    background: red;
-    animation-name: color-fade-out;
-    animation-timing-function: ease-out;
-    animation-delay: 0.3s;
-  }
-  @keyframes color-fade-out {
-    100% {
-      background: pink;
-    }
-  } */
   
   /* Animation: Clockwise */
   @keyframes spin-clockwise {
@@ -458,7 +448,84 @@ background: transparent;
   }
   
   
-  
+  /* MEDIA QUERIES */
+  @media only screen and (min-width: 1440px) {
+    .oscillator, .control {
+      
+      max-width: 1200px;
+    }
+    .oscillator {
+      margin-top: 70px;
+      min-height: 150px;
+    }
+    .control {
+      min-height: 450px;
+    }
+    .reverb {
+      margin: -20px 0 0 300px;
+    }
+  }
+  @media only screen and (max-width: 1245px) {
+    .oscillator {
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    .scope {
+      display: none;
+    }
+    .reverb {
+      position: relative;
+      margin: 0;
+    }
+    .reverb::before {
+      display: none;
+    }
+    .recorder-playback audio {
+      width: 80%;
+      height: 30px;
+    }
+    .recorder-controls button {
+      width: 80%;
+      height: 30px;
+    }
+    .recorder {
+      margin: 10px;
+      padding: 30px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      align-content: flex-end;
+    }
+    .recorder-logo {
+      display: block;
+      margin: -35px 0 0 -35px;
+      overflow: hidden;
+      transform: scale(0.75);
+    }
+    .logo {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 640px) {
+    .oscillator {
+      flex-direction: column;
+      align-items: center;
+    }
+    .scope {
+      display: block;
+    }
+    #sustain-button {
+      width: 80%;
+    }
+    .recorder {
+      display: none;
+    }
+    .control {
+      display: none;
+    }
+    .reverb {
+      display: none;
+    }
+  }
   
   
 

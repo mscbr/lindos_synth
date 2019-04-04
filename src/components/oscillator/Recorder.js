@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Logo from '../../lindos-synth-logo.png'
 
 class Recorder extends Component {
     constructor(props) {
@@ -48,6 +49,9 @@ class Recorder extends Component {
                 </div>
                 <div className="recorder-controls">
                     {recordBtn}
+                </div>
+                <div className="recorder-logo">
+                    <img src={Logo} alt='lindos synth logo' id='lindos-synth-logo' />
                 </div>
             </div>
         ); 

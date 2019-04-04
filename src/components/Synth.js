@@ -42,12 +42,19 @@ class Synth extends Component {
       this.reverb = new Tone.JCReverb({
         wet: 0.0
       });
+      this.hiPass = new Tone.EQ3({        
+        low: -Infinity,
+        mid: 0,
+        high: 0,
+        lowFrequency: 600 ,
+        highFrequency: 2500
+      }) 
       //RECORDER SETUP
       this.actx = Tone.context;
       this.dest = this.actx.createMediaStreamDestination();
       this.recorder = new MediaRecorder(this.dest.stream);
       
-      this.synth.connect(this.lowPass.connect(this.reverb.connect(this.gain)));
+      this.synth.connect(this.lowPass.connect(this.reverb.connect(this.hiPass.connect(this.gain))));
       this.gain.connect(this.dest);
       this.seq = new Tone.Sequence((time, value) => {
         this.positionSet();
