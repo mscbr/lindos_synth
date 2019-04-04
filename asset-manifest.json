@@ -1,14 +1,14 @@
 {
-  "main.css": "/static/css/main.d90d1ef9.chunk.css",
-  "main.js": "/static/js/main.11f94940.chunk.js",
-  "main.js.map": "/static/js/main.11f94940.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-  "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-  "static/js/2.4d6aacd7.chunk.js": "/static/js/2.4d6aacd7.chunk.js",
-  "static/js/2.4d6aacd7.chunk.js.map": "/static/js/2.4d6aacd7.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.aa2ab9267dc304d23c1a6d13d6155d54.js": "/precache-manifest.aa2ab9267dc304d23c1a6d13d6155d54.js",
-  "service-worker.js": "/service-worker.js",
-  "static/css/main.d90d1ef9.chunk.css.map": "/static/css/main.d90d1ef9.chunk.css.map",
-  "static/media/lindos-synth-logo.png": "/static/media/lindos-synth-logo.0fb2427b.png"
+  "main.css": "/lindos_synth/static/css/main.d90d1ef9.chunk.css",
+  "main.js": "/lindos_synth/static/js/main.a3fac292.chunk.js",
+  "main.js.map": "/lindos_synth/static/js/main.a3fac292.chunk.js.map",
+  "runtime~main.js": "/lindos_synth/static/js/runtime~main.d9d3688c.js",
+  "runtime~main.js.map": "/lindos_synth/static/js/runtime~main.d9d3688c.js.map",
+  "static/js/2.4d6aacd7.chunk.js": "/lindos_synth/static/js/2.4d6aacd7.chunk.js",
+  "static/js/2.4d6aacd7.chunk.js.map": "/lindos_synth/static/js/2.4d6aacd7.chunk.js.map",
+  "index.html": "/lindos_synth/index.html",
+  "precache-manifest.8587e6f1be1fb0fb6f4844514371a9e3.js": "/lindos_synth/precache-manifest.8587e6f1be1fb0fb6f4844514371a9e3.js",
+  "service-worker.js": "/lindos_synth/service-worker.js",
+  "static/css/main.d90d1ef9.chunk.css.map": "/lindos_synth/static/css/main.d90d1ef9.chunk.css.map",
+  "static/media/lindos-synth-logo.png": "/lindos_synth/static/media/lindos-synth-logo.0fb2427b.png"
 }
