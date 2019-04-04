@@ -1,6 +1,8 @@
 LINDOS-SYNTH PROJECT
 React & Tone.js synthesizer project inspired by Rhodes island and Harry Partch work.
 
+deployed at: https://mscbr.github.io/lindos_synth/
+
 ###styles
 color palette: 
     #034488 / rgba(3, 68, 136, 1) - dark blue
