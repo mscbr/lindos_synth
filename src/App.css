@@ -1,7 +1,7 @@
 .oscillator {
     display: flex;
     width: 85%;
-    min-height: 25%;
+    min-height: 150px;
     margin: 0 auto;
     background: rgba(255, 252, 246, 1);
     border: solid 3px rgba(3, 68, 136, 1);
