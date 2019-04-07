@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/lindos_synth/precache-manifest.8587e6f1be1fb0fb6f4844514371a9e3.js"
+  "/lindos_synth/precache-manifest.b739b5292d7e80606bf1d020de4d169d.js"
 );
 
 workbox.clientsClaim();

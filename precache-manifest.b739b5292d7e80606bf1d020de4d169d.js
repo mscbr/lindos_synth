@@ -8,7 +8,7 @@ self.__precacheManifest = [
     "url": "/lindos_synth/static/js/runtime~main.d9d3688c.js"
   },
   {
-    "revision": "1a754847956e045b3aa2",
+    "revision": "a8835cbbf5b4069141b5",
     "url": "/lindos_synth/static/js/main.a3fac292.chunk.js"
   },
   {
@@ -16,11 +16,11 @@ self.__precacheManifest = [
     "url": "/lindos_synth/static/js/2.4d6aacd7.chunk.js"
   },
   {
-    "revision": "1a754847956e045b3aa2",
-    "url": "/lindos_synth/static/css/main.d90d1ef9.chunk.css"
+    "revision": "a8835cbbf5b4069141b5",
+    "url": "/lindos_synth/static/css/main.dbe8c240.chunk.css"
   },
   {
-    "revision": "ca9daf163598b653763c44607b008082",
+    "revision": "2fe8937af798701574c0bb6665b368e3",
     "url": "/lindos_synth/index.html"
   }
 ];

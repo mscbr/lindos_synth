@@ -1,5 +1,5 @@
 {
-  "main.css": "/lindos_synth/static/css/main.d90d1ef9.chunk.css",
+  "main.css": "/lindos_synth/static/css/main.dbe8c240.chunk.css",
   "main.js": "/lindos_synth/static/js/main.a3fac292.chunk.js",
   "main.js.map": "/lindos_synth/static/js/main.a3fac292.chunk.js.map",
   "runtime~main.js": "/lindos_synth/static/js/runtime~main.d9d3688c.js",
@@ -7,8 +7,8 @@
   "static/js/2.4d6aacd7.chunk.js": "/lindos_synth/static/js/2.4d6aacd7.chunk.js",
   "static/js/2.4d6aacd7.chunk.js.map": "/lindos_synth/static/js/2.4d6aacd7.chunk.js.map",
   "index.html": "/lindos_synth/index.html",
-  "precache-manifest.8587e6f1be1fb0fb6f4844514371a9e3.js": "/lindos_synth/precache-manifest.8587e6f1be1fb0fb6f4844514371a9e3.js",
+  "precache-manifest.b739b5292d7e80606bf1d020de4d169d.js": "/lindos_synth/precache-manifest.b739b5292d7e80606bf1d020de4d169d.js",
   "service-worker.js": "/lindos_synth/service-worker.js",
-  "static/css/main.d90d1ef9.chunk.css.map": "/lindos_synth/static/css/main.d90d1ef9.chunk.css.map",
+  "static/css/main.dbe8c240.chunk.css.map": "/lindos_synth/static/css/main.dbe8c240.chunk.css.map",
   "static/media/lindos-synth-logo.png": "/lindos_synth/static/media/lindos-synth-logo.0fb2427b.png"
 }
