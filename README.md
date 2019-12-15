@@ -1,12 +1,8 @@
-LINDOS-SYNTH PROJECT
-React & Tone.js synthesizer project inspired by Rhodes island and Harry Partch work.
+# LINDOS-SYNTH
+Synthesizer & step-sequencer inspired by the work of Harry Partch.
 
-deployed at: https://mscbr.github.io/lindos_synth/
+Developed with: `React`, `Tone.js`, `Web Audio API`
 
-###styles
-color palette: 
-    #034488 / rgba(3, 68, 136, 1) - dark blue
-    #178fd6 / rgba(23, 143, 214, 1) - blue
-    #ccdde8 / rgba(204, 221, 232, 1) - pastel blue
-    #edece8 / rgba(237, 236, 232, 1)  - pastel grey
-    #fffcf6 / rgba(255, 252, 246, 1) - "white"
+## DEMO
+https://mscbr.github.io/lindos_synth/
+
